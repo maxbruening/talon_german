@@ -11,7 +11,7 @@ if (
 	sys.platform.startswith('darwin')
 ):
 	try:
-		subprocess.run(['xclip', '-h'])
+		subprocess.run(['xclip', '-version'])
 		USE_XCLIP = True
 	except:
 		print("installing xclip might make insertion way more snappy")

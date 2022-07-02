@@ -6,10 +6,6 @@ language: de_DE
 	mode.disable("user.german")
 	mode.enable("command")
 
-^(japanisch | japanese)$:
-	mode.disable("user.german")
-	mode.enable("user.japanese")
-
 ^german$: skip()
 
 ^unicode$:
@@ -18,8 +14,7 @@ language: de_DE
 ^kein unicode$:
 	user.disable_german_unicode()
 
-# "enter" is often confused with hinter/center/...
-eingabe: key("enter")
+enter: key("enter")
 
 # "weg" should only be recognized when it's not part of a sentence or
 # using token for counting the number of "weg"s

@@ -235,14 +235,14 @@ class Actions:
             # scan left side of the cursor
             clip.clear()
             actions.edit.extend_left()
-            before = clip.get_selection()
+            before = clip.get_selection().strip()
             if before != "":
                 actions.edit.extend_right()
 
             # scan right side of the cursor
             clip.clear()
             actions.edit.extend_right()
-            after = clip.get_selection()
+            after = clip.get_selection().strip()
             if after != "":
                 actions.edit.extend_left()
 

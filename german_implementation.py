@@ -10,7 +10,7 @@ language: de_DE
 
 # dictionary for capitalization
 path = os.path.dirname(os.path.abspath(__file__))
-with open(path + "/dictionary/german.dic", encoding='ISO-8859-1') as f:
+with open(path + "/dictionary/german.dic") as f:
     list_of_words = f.read().split("\n")
 
 dict_of_words = {}
