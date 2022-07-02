@@ -20,7 +20,11 @@ if (
 class ClipScanner:
 	def __enter__(self):
 		if USE_XCLIP:
-			self.buffer = subprocess.check_output(['xclip', '-o'])
+			try:
+				self.buffer = subprocess.check_output(['xclip', '-o'])
+			except subprocess.CalledProcessError as e:
+				print("'xclip -o' returned error: ", e)
+				self.buffer = None
 		self.clear()
 		return self
 

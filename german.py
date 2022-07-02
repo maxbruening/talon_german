@@ -171,8 +171,8 @@ ctx.lists["user.symbol_key"] = {
     "zirkumflex": "^",
 }
 
-mod.list("count", desc="Words for a positive nonzero count of things")
-count_words = {
+mod.list("number", desc="Words for a positive nonzero number")
+number_words = {
     "eins": "1",
     "zwei": "2",
     "drei": "3",
@@ -184,8 +184,44 @@ count_words = {
     "neun": "9",
     "zehn": "10",
 }
-count_words.update({str(i): str(i) for i in range(10)})
+number_words.update({str(i): str(i) for i in range(10)})
+ctx.lists["self.number"] = number_words
+
+@mod.capture
+def number_small(m) -> int:
+    """A small number"""
+
+@ctx.capture(
+    "user.number_small", rule=f"({'|'.join(number_words.keys())})"
+)
+def number_small(m) -> int:
+    return int(number_words[str(m)])
+
+
+mod.list("count", desc="Words for a positive nonzero count of actions")
+count_words = {
+    "einfach": "1",
+    "zweifach": "2",
+    "dreifach": "3",
+    "vierfach": "4",
+    "fünffach": "5",
+    "sechsfach": "6",
+    "siebenfach": "7",
+    "achtfach": "8",
+    "neunfach": "9",
+    "zehnfach": "10",
+}
 ctx.lists["self.count"] = count_words
+
+@mod.capture
+def count_small(m) -> int:
+    """A small count of instances of actions"""
+
+@ctx.capture(
+    "user.count_small", rule=f"({'|'.join(count_words.keys())})"
+)
+def count_small(m) -> int:
+    return int(count_words[str(m)])
 
 _space_after = ".,!?:;)]}–“‘$£€"
 _no_space_before = ".,-!?:;)]}␣“‘’$£€"
