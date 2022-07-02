@@ -237,6 +237,9 @@ ctx.lists["self.modifier"] = {
     "zwerg": "LOWER",
 }
 
+@mod.capture
+def vocabulary_german(m: str) -> str:
+    """user vocabulary"""
 
 @mod.capture
 def wort(m: str) -> str:
