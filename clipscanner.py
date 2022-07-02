@@ -24,7 +24,7 @@ class ClipScanner:
 				self.buffer = subprocess.check_output(['xclip', '-o'])
 			except subprocess.CalledProcessError as e:
 				print("'xclip -o' returned error: ", e)
-				self.buffer = None
+				self.buffer = u''
 		self.clear()
 		return self
 

@@ -30,7 +30,7 @@ neuer absatz:
 (kopier|kopiere) das: edit.copy()
 (schneide|schneidet) das aus: edit.cut()
 füge das ein: edit.paste()
-mach zurück: edit.undo()
+mache rückgängig: edit.undo()
 stelle wieder her: edit.redo()
 
 # Navigation
@@ -85,4 +85,4 @@ geh runter <user.number_small>:
     repeat(number_small - 1)
     edit.delete()
 
-(drücke|drücken) löschen: key("backspace")
+löschtaste: key("backspace")
