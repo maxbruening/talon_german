@@ -171,6 +171,22 @@ ctx.lists["user.symbol_key"] = {
     "zirkumflex": "^",
 }
 
+mod.list("count", desc="Words for a positive nonzero count of things")
+count_words = {
+    "eins": "1",
+    "zwei": "2",
+    "drei": "3",
+    "vier": "4",
+    "fünf": "5",
+    "sechs": "6",
+    "sieben": "7",
+    "acht": "8",
+    "neun": "9",
+    "zehn": "10",
+}
+count_words.update({str(i): str(i) for i in range(10)})
+ctx.lists["self.count"] = count_words
+
 _space_after = ".,!?:;)]}–“‘$£€"
 _no_space_before = ".,-!?:;)]}␣“‘’$£€"
 _ascii_replace = {'–': '-', '„': '"', '“': '"', "‚": "'", "‘": "'", "’": "'"}
@@ -207,7 +223,7 @@ def satz(m: str) -> str:
 
 
 @mod.capture
-def weg(m: str) -> str:
+def weg(m: str, count: str) -> str:
     """capture multiple "weg"s"""
 
 
@@ -280,31 +296,32 @@ class Actions:
         actions.user.add_phrase_to_history(text)
         actions.insert(text)
 
-    def smart_delete(txt: str):
+    def smart_delete(txt: str, count: str):
         """delete word and optionally space"""
 
         with ClipScanner() as clip:
             for i in range(len(str(txt).split())):
-                # first just delete all spaces until next word
-                clip.clear()
-                actions.edit.extend_word_left()
-                before = clip.get_selection()
-                if before != '' and before[-1] in [" ", "\n"]:
-                    actions.edit.extend_word_right()
-                    actions.key("backspace")
-                    continue
+                for j in range(int(count)):
+                    # first just delete all spaces until next word
+                    clip.clear()
+                    actions.edit.extend_word_left()
+                    before = clip.get_selection()
+                    if before != '' and before[-1] in [" ", "\n"]:
+                        actions.edit.extend_word_right()
+                        actions.key("backspace")
+                        continue
 
-                # if there were none, delete next word
-                actions.key("backspace")
-
-                # delete spaces before that as well
-                clip.clear()
-                actions.edit.extend_left()
-                before = clip.get_selection()
-                if before in [" ", "\n"]:
+                    # if there were none, delete next word
                     actions.key("backspace")
-                elif before != '':
-                    actions.edit.extend_right()
+
+                    # delete spaces before that as well
+                    clip.clear()
+                    actions.edit.extend_left()
+                    before = clip.get_selection()
+                    if before in [" ", "\n"]:
+                        actions.key("backspace")
+                    elif before != '':
+                        actions.edit.extend_right()
 
     def vosk_recognize_german(phrase: Phrase):
         """Replay speech into vosk"""

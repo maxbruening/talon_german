@@ -81,4 +81,4 @@ def satz(m) -> str:
 @ctx.capture("user.weg", rule='weg+')
 def weg(m) -> str:
     """capture multiple "weg"s"""
-    return m
+    return str(m)

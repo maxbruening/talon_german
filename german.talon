@@ -14,11 +14,14 @@ language: de_DE
 ^kein unicode$:
 	user.disable_german_unicode()
 
-enter: key("enter")
+neue zeile: key("enter")
+neuer absatz:
+  key("enter")
+  key("enter")
 
 # "weg" should only be recognized when it's not part of a sentence or
 # using token for counting the number of "weg"s
-^<user.weg>$: user.smart_delete(weg)
+^<user.weg> [{user.count}]$: user.smart_delete(weg, "{count or '1'}")
 
 ^speichern$: edit.save()
 
