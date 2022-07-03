@@ -8,29 +8,27 @@ language: de_DE
 
 ^german$: skip()
 
-^unicode$:
-	user.enable_german_unicode()
+<user.satz>: user.smart_insert(satz)
 
-^kein unicode$:
-	user.disable_german_unicode()
+^(abkürzung|abkürzungen) <user.acronym>: "{acronym}"
 
 neue zeile: key("enter")
 neuer absatz:
   key("enter")
   key("enter")
 
+leerzeichen: " "
+
 # "weg" should only be recognized when it's not part of a sentence or
 # using token for counting the number of "weg"s
 ^<user.weg> [{user.count}]$: user.smart_delete(weg, "{count or '1'}")
-
-<user.satz>: user.smart_insert(satz)
 
 ^speichern$: edit.save()
 
 (kopier|kopiere) das: edit.copy()
 (schneide|schneidet) das aus: edit.cut()
 füge das ein: edit.paste()
-mache rückgängig: edit.undo()
+(mach|mache) rückgängig: edit.undo()
 stelle wieder her: edit.redo()
 
 # Navigation

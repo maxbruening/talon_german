@@ -27,7 +27,9 @@ _ascii_replace = {'–': '-', '„': '"', '“': '"', "‚": "'", "‘": "'", "�
 _capitalize_after = ".!?"
 
 
-@ctx.capture("user.wort", rule='({user.letter}+ | {user.number_key}+ | <user.vocabulary_german> | <word>)')
+
+
+@ctx.capture("user.wort", rule='({user.number_key}+ | <user.vocabulary_german> | <word>)')
 def wort(m) -> str:
     """word or spelled word or number, inserts space in the end"""
     return ''.join(str(m).split()) + ' '
@@ -82,3 +84,8 @@ def satz(m) -> str:
 def weg(m) -> str:
     """capture multiple "weg"s"""
     return str(m)
+
+
+@ctx.capture("user.acronym", rule="{user.letter}+")
+def acronym(m: str) -> str:
+    return "".join(m.letter_list).upper()

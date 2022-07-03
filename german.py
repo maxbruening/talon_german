@@ -43,38 +43,57 @@ mod.setting("german_unicode",
             default=1,
             desc="Enable proper unicode punctuation")
 
-ctx.lists["user.letter"] = {
-    "alpha": "a",
-    "bravo": "b",
-    "charlie": "c",
-    "delta": "d",
-    "echo": "e",
-    "foxtrott": "f",
-    "golf": "g",
-    "hotel": "h",
-    "india": "i",
-    "julia": "j",
-    "kilo": "k",
-    "lima": "l",
-    "mike": "m",
-    "november": "n",
-    "oskar": "o",
-    "papa": "p",
-    "québec": "q",
-    "romeo": "r",
-    "sierra": "s",
-    "tango": "t",
-    "uniform | uniformen": "u",
-    "viktor": "v",
-    "whisky": "w",
-    "x ray": "x",
+letters = {
+    "alt": "a",
+    "bett": "b",
+    "kap": "c",
+    "kapp": "c",
+    "cap": "c",
+    "cup": "c",
+    "drum": "d",
+    "echt": "e",
+    "fein": "f",
+    "feind": "f",
+    "gast": "g",
+    "hab": "h",
+    "hat": "h",
+    "hart": "h",
+    "ich": "i",
+    "j": "j",
+    "kennt": "k",
+    "kent": "k",
+    "kind": "k",
+    "look": "l",
+    "luck": "l",
+    "met": "m",
+    "mit": "m",
+    "not": "n",
+    "oft": "o",
+    "pitt": "p",
+    "kuh": "q",
+    "rad": "r",
+    "rat": "r",
+    "rate": "r",
+    "raten": "r",
+    "sinn": "s",
+    "tipp": "t",
+    "ulf": "u",
+    "von": "v",
+    "wall": "w",
+    "plex": "x",
+    "chunky": "y",
     "junkie": "y",
-    "zulu": "z",
-    "ära": "ä",
-    "ökonom | ökonomen": "ö",
-    "übermut": "ü",
+    "tanki": "y",
+    "z": "z",
+    "ähnlich": "ä",
+    "öl": "ö",
+    "übel": "ü",
+    "üben": "ü",
     "s z": "ß",
 }
+letters.update({v: v for v in letters.values()})
+
+ctx.lists["user.letter"] = letters
 
 ctx.lists["user.number_key"] = {
     "null": "0",
@@ -265,16 +284,13 @@ def satz(m: str) -> str:
 def weg(m: str, count: str) -> str:
     """capture multiple "weg"s"""
 
+@mod.capture
+def acronym(m: str) -> str:
+    """an acronym composed of multiple letters"""
+
 
 @mod.action_class
 class Actions:
-    def enable_german_unicode():
-        """enable proper unicode punctuation"""
-        ctx.settings["user.german_unicode"] = 1
-
-    def disable_german_unicode():
-        """disable proper unicode punctuation"""
-        ctx.settings["user.german_unicode"] = 0
 
     def smart_insert(txt: str):
         """context-aware insertion"""
