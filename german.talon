@@ -32,51 +32,93 @@ settings():
 
 ^(abkürzung|abkürzungen) <user.acronym>: "{acronym}"
 
-neue zeile: key("enter")
+#######################################################################
+# Misc Editing
+#######################################################################
+neue zeile | zeilenumbruch: key("enter")
+(nächste Zeile | slap | snap | SAP | schlapp):
+    edit.line_end()
+    key("enter")
 neuer absatz:
   key("enter")
   key("enter")
 
 leerzeichen: " "
+(Spiegelstrich | spiegel strich): " - "
 
-# "weg" should only be recognized when it's not part of a sentence or
-# using token for counting the number of "weg"s
-^<user.weg> [{user.count}]$: user.smart_delete(weg, "{count or '1'}")
+(end | eins | in | fans | tanz | dein | ein) klammern:
+    " ()"
+    edit.left()
+großgeschrieben | grossgeschrieben | mach groß:
+    edit.select_word()
+    user.formatters_reformat_selection("title")
 
+(E-mail Signatur | e-mail-signatur):
+    """
+Viele Grüße
+
+***REMOVED***"""
+
+#######################################################################
+# Editor Commands
+#######################################################################
+datei speichern: edit.save()
 ^speichern$: edit.save()
-
 (kopier|kopiere) das: edit.copy()
 (schneide|schneidet) das aus: edit.cut()
 füge das ein: edit.paste()
-(mach|mache) rückgängig: edit.undo()
+((mach|mache) rückgängig | nop | nap): edit.undo()
+((mach|mache) rückgängig | nop | nap) <user.number_small>:
+    edit.undo()
+    repeat(number_small - 1)
+(nop | nap) das: user.clear_last_phrase()
+^ob das$: user.clear_last_phrase()
 stelle wieder her: edit.redo()
 
+#######################################################################
 # Navigation
-geh hoch: edit.up()
-geh hoch <user.number_small>:
+#######################################################################
+# small movements
+(geh | gehe | g) (hoch | rauf): edit.up()
+(geh | gehe | g) (hoch | rauf) <user.number_small>:
     edit.up()
     repeat(number_small - 1)
-geh runter: edit.down()
-geh runter <user.number_small>:
+(geh | gehe | g) runter: edit.down()
+(geh | gehe | g) runter <user.number_small>:
     edit.down()
-    repeat(number_small - 1) 
-    
-(spring|springe|springt|springen) links:
-    edit.word_left()
-(spring|springe|springt|springen) links <user.number_small>:
-    edit.word_left()
     repeat(number_small - 1)
-(spring|springe|springt|springen) rechts:
-    edit.word_right()
-(spring|springe|springt|springen) rechts <user.number_small>:
-    edit.word_right()
+(geh | gehe | g) links: edit.left()
+(geh | gehe | g) links <user.number_small>:
+    edit.left()
     repeat(number_small - 1)
-(spring|springe|springt|springen) zeilen anfang: edit.line_start()
-(spring|springe|springt|springen) heimat: edit.line_start()
-(spring|springe|springt|springen) zeilenende: edit.line_end()
-(spring|springe|springt|springen) push: edit.line_end()
+(geh | gehe | g) rechts: edit.right()
+(geh | gehe | g) rechts <user.number_small>:
+    edit.right()
+    repeat(number_small - 1)
 
-## Selection
+# large movements
+(spring|spreng|sprang|springe|spenge|springer|springt|springen) links:
+    edit.word_left()
+(spring|spreng|sprang|springe|spenge|springer|springt|springen) links <user.number_small>:
+    edit.word_left()
+    repeat(number_small - 1)
+(spring|spreng|sprang|springe|spenge|springer|springt|springen) rechts:
+    edit.word_right()
+(spring|spreng|sprang|springe|spenge|springer|springt|springen) rechts <user.number_small>:
+    edit.word_right()
+    repeat(number_small - 1)
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen) zeilen anfang: edit.line_start()
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen) ganz links: edit.line_start()
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen) heimat: edit.line_start()
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen) (band|Ben): edit.line_start()
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen) zeilenende: edit.line_end()
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen) push: edit.line_end()
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen) ganz rechts: edit.line_end()
+(spring|spreng|sprang|springe|spenge|sprenger|springer|springt|springen|sprengel) (land|event|blend|rent|nennt|lent|lernt|lend): edit.line_end()
+
+#######################################################################
+# Selecting Text
+#######################################################################
 (auswähle|auswählen) links:
     edit.extend_word_left()
 (auswähle|auswählen) links <user.number_small>:
@@ -87,20 +129,49 @@ geh runter <user.number_small>:
 (auswähle|auswählen) rechts <user.number_small>:
     edit.extend_word_right()
     repeat(number_small - 1)
-    
-(lösche|löschen) links:
+
+#######################################################################
+# Deleting Text
+#######################################################################
+# "weg" should only be recognized when it's not part of a sentence or
+# using token for counting the number of "weg"s
+^<user.weg> [{user.count}]$: user.smart_delete(weg, "{count or '1'}")
+löschtaste: key("backspace")
+
+(lösche|wäsche|löschen|löcher) links:
     edit.extend_word_left()
     edit.delete()
-(lösche|löschen) links <user.number_small>:
+(lösche|wäsche|löschen|löcher) links <user.number_small>:
     edit.extend_word_left()
     repeat(number_small - 1)
     edit.delete()
-(lösche|löschen) rechts:
-    edit.extend_word_left()
+(lösche|wäsche|löschen|löcher) ganz links:
+    edit.extend_line_start()
     edit.delete()
-(lösche|löschen) rechts <user.number_small>:
+(entferne) links:
+    edit.delete()
+(lösche|wäsche|löschen|löcher) rechts:
+    edit.extend_word_right()
+    edit.delete()
+(lösche|wäsche|löschen|löcher) rechts <user.number_small>:
     edit.extend_word_right()
     repeat(number_small - 1)
     edit.delete()
+(lösche|wäsche|löschen|löcher) ganz rechts:
+    edit.extend_line_end()
+    edit.delete()
+(entferne) rechts:
+    key("delete")
+(lösche|wäsche|löschen|löcher) zeile: edit.delete_line()
 
-löschtaste: key("backspace")
+#######################################################################
+# Talon
+#######################################################################
+(bearbeite|bearbeitet|modifiziere) deutsche (wörter|wetter|blätter|better|pater):
+    user.edit_text_file("/home/markus/.talon/user/knausj_talon/settings/additional_words_de.csv")
+    sleep(500ms)
+    edit.file_end()
+(bearbeite|bearbeitet|modifiziere) deutsche befehle:
+    user.edit_text_file("/home/markus/.talon/user/talon_german/german.talon")
+    sleep(500ms)
+    edit.file_end()
