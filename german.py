@@ -26,6 +26,13 @@ mode: user.german
 language: de_DE
 """
 
+setting_context_sensitive_dictation_german = mod.setting(
+    "context_sensitive_dictation_german",
+    type=bool,
+    default=False,
+    desc="Look at surrounding text to improve auto-capitalization/spacing in dictation mode. By default, this works by selecting that text & copying it to the clipboard, so it may be slow or fail in some applications.",
+)
+
 phrase_stack = []
 
 
@@ -291,31 +298,16 @@ def acronym(m: str) -> str:
 
 @mod.action_class
 class Actions:
-
-    def smart_insert(txt: str):
-        """context-aware insertion"""
+    def smart_insertion(txt: str) -> str:
+        """handles context-aware insertion"""
 
         text = ""
 
-        # delete whatever is currently selected
-        actions.key(" ")
-        actions.key("backspace")
-
-        with ClipScanner() as clip:
-
-            # scan left side of the cursor
-            clip.clear()
-            actions.edit.extend_left()
-            before = clip.get_selection().strip()
-            if before != "":
-                actions.edit.extend_right()
-
-            # scan right side of the cursor
-            clip.clear()
-            actions.edit.extend_right()
-            after = clip.get_selection().strip()
-            if after != "":
-                actions.edit.extend_left()
+        before = actions.user.dictation_peek_left()
+        after  = actions.user.dictation_peek_right()
+        # the following checks only use the first char
+        before = before[-1] if len(before) > 0 else before
+        after = after[0] if len(after) > 0 else after
 
         squeeze_into_word = before != "" and unicodedata.category(before)[0] == 'L' \
                             and after != "" and unicodedata.category(after)[0] == 'L'
@@ -348,6 +340,21 @@ class Actions:
                 and not squeeze_into_word
         ):
             text += " "
+        return text
+
+
+    def insert(txt: str):
+        """text insertion"""
+
+        # delete whatever is currently selected
+        # note: this behavior leads to missing spaces in vim as a delete in vim sometimes takes multiple
+        # spaces at once (-> investigate!)
+        #actions.key(" ")
+        #actions.key("backspace")
+
+        text = txt
+        if setting_context_sensitive_dictation_german.get():
+            text = actions.user.smart_insertion(text)
         actions.user.add_phrase_to_history(text)
         actions.insert(text)
 

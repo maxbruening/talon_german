@@ -28,7 +28,7 @@ settings():
 
 ^german$: skip()
 
-<user.satz>: user.smart_insert(satz)
+<user.satz>: user.insert(satz)
 
 ^(abkürzung|abkürzungen) <user.acronym>: "{acronym}"
 
