@@ -125,6 +125,7 @@ ctx.lists["user.punctuation"] = {
     "planck": "␣",
     "beistrich": ",",  # komma is often confused with komme
     "bei strich": ",",  # komma is often confused with komme
+    "beistriche": ",",  # komma is often confused with komme
     "punkt": ".",
     "semikolon": ";",
     "doppelpunkt": ":",
@@ -157,6 +158,7 @@ ctx.lists["user.symbol_key"] = {
     "planck": "␣",
     "beistrich": ",",  # komma is often confused with komme
     "bei strich": ",",  # komma is often confused with komme
+    "beistriche": ",",  # komma is often confused with komme
     "punkt": ".",
     "semikolon": ";",
     "doppelpunkt": ":",
