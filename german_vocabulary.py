@@ -13,7 +13,7 @@ mod = Module()
 
 # NOTE: This method requires this module to be one folder below the top-level
 #   knausj folder.
-SETTINGS_DIR = Path(__file__).parents[0] / "settings"
+SETTINGS_DIR: Path = Path(__file__).parents[1] / "knausj_talon" / "settings"
 
 if not SETTINGS_DIR.is_dir():
     os.mkdir(SETTINGS_DIR)
@@ -78,7 +78,7 @@ _default_vocabulary = {
 mod.list("vocabulary_german", desc="additional german vocabulary words")
 
 additional_words = get_list_from_csv(
-    "additional_words.csv",
+    "additional_words_de.csv",
     headers=("Word(s)", "Spoken Form (If Different)"),
     default=_default_vocabulary,
 )
@@ -88,3 +88,12 @@ ctx.lists["user.vocabulary_german"] = additional_words
 def vocabulary_german(m) -> str:
     """user vocabulary"""
     return str(m)
+
+# Always capitalize words that are defined in this file
+always_capitalized_words = get_list_from_csv(
+    "capitalized_words_de_custom.csv",
+    headers=("Word(s)"),
+    default={},
+)
+ctx.lists["user.always_capitalized_words_german"] = always_capitalized_words
+
