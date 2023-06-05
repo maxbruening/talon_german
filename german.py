@@ -129,6 +129,7 @@ ctx.lists["user.punctuation"] = {
     "beißt nicht": ",",  # komma is often confused with komme
     "beistriche": ",",  # komma is often confused with komme
     "punkt": ".",
+    "ellipse": "...",
     "semikolon": ";",
     "doppelpunkt": ":",
     "schrägstrich": "/",

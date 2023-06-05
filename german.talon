@@ -44,6 +44,8 @@ neuer absatz:
   key("enter")
 
 leerzeichen: " "
+schrägstrich oder: " / "
+
 (Spiegelstrich | spiegel strich): " - "
 
 (in | end | eins | fans | tanz | dein | ein) klammern:
