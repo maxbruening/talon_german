@@ -54,7 +54,7 @@ def gk_wort(m) -> str:
             return word
 
 
-@ctx.capture("user.satzglied", rule='(<user.gk_wort> | {user.punctuation})')
+@ctx.capture("user.satzglied", rule='(<user.gk_wort> | {user.punctuation} | {user.symbol_key})')
 def satzglied(m) -> str:
     """word or symbol"""
     if str(m)[0] in _space_after:
