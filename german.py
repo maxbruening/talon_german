@@ -396,6 +396,9 @@ class Actions:
         current_phrase = phrase_stack[-1]
         ts = current_phrase['_ts']
         start = phrase.words[0].start - ts
+        # NOTE: might have to tweak this depending on engine / model if words
+        # get lost or parts of "german" appear (as in "an")
+        start = max(0, start - 0.2)
         end = phrase.words[-1].end - ts
         samples = current_phrase['samples']
         pstart = int(start * 16_000)
