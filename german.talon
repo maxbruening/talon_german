@@ -55,13 +55,6 @@ großgeschrieben | groß geschrieben | grossgeschrieben | mach groß | ausgeschr
     edit.select_word()
     user.formatters_reformat_selection("title")
 
-# create variable name_full / name_last / name_first in a file that is not tracked
-(E-mail Signatur | e-mail-signatur):
-    """
-Viele Grüße
-
-***REMOVED***"""
-
 #######################################################################
 ## Editor Commands
 #######################################################################
