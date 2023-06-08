@@ -12,5 +12,5 @@ language: en_US
 # doizy (jp doitsu = deutsch / german) conflicts with dot
 # nemetz (ru = german) works great, no conflicts
 # nemmy conflicts with mimi
-^(german | doizy | nemetz | nemmy) <phrase>$:
+^(doizy | nemetz | nemmy) <phrase>$:
     user.vosk_recognize_german(phrase)

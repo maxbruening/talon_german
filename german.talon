@@ -10,6 +10,8 @@ settings():
 	mode.disable("user.german")
 	mode.enable("command")
 
+# Why copy and paste this to here? Ensuring these commands apply to the german
+# mode as well should be all that is needed.
 ^sleep all [<phrase>]$:
     user.switcher_hide_running()
     user.history_disable()
@@ -172,5 +174,9 @@ löschtaste: key("backspace")
     user.edit_text_file("/home/markus/.talon/user/talon_german/german.talon")
     sleep(500ms)
     edit.file_end()
+
+# Disable / enable pop noise. Relies on custom knausj action from me
+# no pop
 noob | no pop: user.disable_pop()
+# yes pop
 jazz pop | jessup | jetzt Pop | Jacob: user.enable_pop()
