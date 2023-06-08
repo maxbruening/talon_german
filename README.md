@@ -1,8 +1,63 @@
 # Talon German
 German Dictation Mode for Talon Voice
 
-## Status
-This is the first prototype, don't expect a highly satisfying user experience.
+This is a fork of earlier setups, adding some improvements.
+
+## Usage
+Say `german` to switch from command mode to German dictation mode and `english` / `ego` to switch back.
+Insert a quick german phrase with `(doitsu | nemetz) <german text>`.
+Check out the _german.talon_ (and _german.py_) files for German commands.
+
+## Improvements:
+I added various improvements for myself. Check out _german.talon_ for more existing commands.
+
+### Text editing and navigation
+A handful of additional commands that make on-the-fly edits of text much more convenient.
+especially:
+* `springe links / rechts` will jump whole words in left / right direction
+* `lösche links / rechts` will delete whole words in left / right direction
+* `entferne links / rechts` will delete single chars in left / right direction
+* `großgeschrieben` / `mach groß` helps fixing capitalization mistakes from vos
+You can suffix most of these with a number to repeat them, for example `springe links 5`.
+
+In addition to already existing `gehe rauf / runter / recht / links` for single char movements.
+
+### Symbols
+Some improvements regarding symbols - you can use more symbols and direct dictation now.
+Also added more symbols I frequently used, for example `in Klammern` (` ()`), `Spiegelstrich` (` - `), `Ellipse` (`...`), `Schrägstrich oder` (` / `), `Zeilenumbruch`, `Leerzeichen` ...
+
+### Improved robustness of commands with VOSK
+Since registered commands have no influence on what VOSK detects (talon only gets the result after speech recognition), misdetections for commands can be a lot more common than with conformer.
+I improved robustness of many of the commands by adding many of the common misrecognitions as possible alternatives.
+Unfortunately, this makes my talon file a bit uglier to read, since something like "springe rechts" now turns into "(springe | sprenge | spring | sprang | ... ) rechts"
+
+### German mode / quick german phrases
+The previous setup allows you to dictate a quick german phrase from english mode without necessitating switching to german mode and back by appending your phrase to the `german` you produce to change modes (for example `german Hallo Welt`).
+Note that the implementation for this is somewhat of hack and behavior might change with updates in talon or the english speech model.
+
+Since I would sometimes switch into german mode when I did not want to all failed to remain in german mode (resulting in my german text getting interpreted as a bunch of english commands), I set up the quick german phrase and the german mode change to use different commands (there is also the fact that my german accent made the 'r' in 'german' a bit harder to recognize when quickly chaining):
+* `german` switches to german mode and stays there.
+* `doitsu` (japanese for german) or `nemetz` / `nemmy` (russian for german, I currently prefer this) will interpreted the following phrase as german and allow you to continue in english as before.
+
+`english`, or short `ego` (japanese 'eigo' for english) switch back
+
+### Quick access to configuration
+Similar to knausj `customize ...`, following commands allow quick access to important configuration files:
+* `[modifiziere | bearbeite] deutsche Wörter` opens a *additional_words_de.csv* file placed next to knausj *additional_words.csv*. Use this to add new words or fix misrecognitions as well as capitalisation mistakes coming from vosk. Note: actually, it works more like words_to_replace.csv, since it only replaces things that vosk recognized but cannot get it to recognize new stuff - I should rename that.
+* `[modifiziere | bearbeite] deutsche Befehle` opens *german.talon*
+The commands open a gvim instance.
+Currently, the commands use a simple hard-coded path, so you will have to change that.
+
+
+### Context sensitive dictation
+Uses knausj peek functions, this keeps the behavior consistent and allows to make use of overloaded definitions for applications with special behavior.
+Also introduced a setting `user.context_sensitive_dictation_german` that allows you to activate or deactivate this feature for german dictation (separately from english).
+
+## Caveats:
+* Only primitive capitalization
+* Punctuation is less smart than knausj as well, especially if you do not use context sensitive dictation
+* The usage of vosk limits you to what vosk recognizes - adding words or commands in your talon configuration will not influence vosk itself in any way, so you must match all phrases that vosk might hear (so while you might have to command "springe", Vosk might just as well recognize "spring" or "sprenge" instead).
+* Currently uses absolute paths for csvs
 
 ## Dependencies
 This is a plug-in for Talon Voice (https://talonvoice.com/).
@@ -16,12 +71,10 @@ This is a plug-in for Talon Voice (https://talonvoice.com/).
   unzip vosk-model-de.zip
   mv vosk-model-de-* vosk-model-de
   ```
+  Note that there are models in different sizes, you can experiment with that.
 * run `~/.talon/bin/pip install vosk` (on windows `scripts\pip install vosk`)
 * clone this repository into your talon user folder (`~/.talon/user`)
 
 It won't work on mac unless you sign the pip installed library file yourself, or unless aegis ships the vosk kaldi library with talon pre-signed.
-
-## Usage
-Say "german" to switch from command mode to German dictation mode and "english/englisch" to switch back. Check out the german.talon and german.py files for German commands.
 
 [alphacephei]: https://alphacephei.com/vosk/models
