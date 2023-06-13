@@ -20,6 +20,10 @@ for word in list_of_words:
         dict_of_words[word.lower()] = word.lower()
     else:
         dict_of_words[word.lower()] = word
+# TODO: Read in ../knausj_talon/settings/capitalized_words_de_custom.txt to be
+# capitalized
+# Update: Is this really needed or can we just use words_to_replace_de.csv for
+# that?
 
 _space_after = ".,!?:;)]}–“‘$£€"
 _no_space_before = ".,-!?:;)]}␣“‘’$£€"
@@ -33,6 +37,9 @@ _capitalize_after = ".!?"
 def wort(m) -> str:
     """word or spelled word or number, inserts space in the end"""
     return ''.join(str(m).split()) + ' '
+    # XXX Continue here with capitlization
+    #word = ''.join(str(m).split())
+    # todo: capitalize here
 
 
 @ctx.capture("user.gk_wort", rule='[{user.modifier}] <user.wort>')

@@ -76,6 +76,7 @@ _default_vocabulary = {
 # recognize. Words in user.vocabulary (or other lists and captures) are
 # "command-like" and their recognition is prioritized over ordinary words.
 mod.list("vocabulary_german", desc="additional german vocabulary words")
+mod.list("always_capitalized_words_german", desc="german words that should be capitalized")
 
 additional_words = get_list_from_csv(
     "additional_words_de.csv",
