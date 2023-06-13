@@ -46,7 +46,7 @@ neuer absatz:
   key("enter")
 
 leerzeichen: " "
-schrägstrich oder: " / "
+(schrägstrich | abstrich) oder: " / "
 
 (Spiegelstrich | spiegel strich): " - "
 
@@ -166,12 +166,16 @@ löschtaste: key("backspace")
 ## Talon
 #######################################################################
 # TODO: create talon setting for location of german settings directory
-(bearbeite|wer arbeitet|bearbeitet|bearbeitete|gearbeitet|modifiziere|modifiziert) (deutsche|deutscher|solche) (wörter|wetter|blätter|better|pater):
-    user.edit_text_file("/home/markus/.talon/user/knausj_talon/settings/additional_words_de.csv")
+# Note: This expects a modified edit_text_file() action that accepts a second
+# parameter for the working directory the editor should open in.
+# If you do not need it, you can just get rid of the second parameter to get
+# back knausj edit_text_file()
+(bearbeite|wer arbeitet|bearbeitet|bearbeitete|bearbeiter|gearbeitet|modifiziere|modifiziert) (deutsche|deutscher|solche) (wörter|wetter|blätter|better|pater|vetter):
+    user.edit_text_file("/home/markus/.talon/user/knausj_talon/settings/additional_words_de.csv", "/home/markus/.talon/user/talon_german")
     sleep(500ms)
     edit.file_end()
-(bearbeite|wer arbeitet|bearbeitet|bearbeitete|gearbeitet|modifiziere|modifiziert) (deutsche|deutscher|solche) befehle:
-    user.edit_text_file("/home/markus/.talon/user/talon_german/german.talon")
+(bearbeite|wer arbeitet|bearbeitet|bearbeitete|bearbeiter|gearbeitet|modifiziere|modifiziert) (deutsche|deutscher|solche) befehle:
+    user.edit_text_file("/home/markus/.talon/user/talon_german/german.talon", "/home/markus/.talon/user/talon_german")
     sleep(500ms)
     edit.file_end()
 
