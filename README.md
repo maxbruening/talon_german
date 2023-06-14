@@ -5,7 +5,7 @@ This is a fork of earlier setups, adding some improvements.
 
 ## Usage
 Say `german` to switch from command mode to German dictation mode and `english` / `ego` to switch back.
-Insert a quick german phrase with `(doitsu | nemetz) <german text>`.
+Insert a quick german phrase with `(doitsu | nemetz) <german text>` (japanese / russian for "german").
 Check out the _german.talon_ (and _german.py_) files for German commands.
 
 ## Improvements:
@@ -57,7 +57,10 @@ Also introduced a setting `user.context_sensitive_dictation_german` that allows 
 * Only primitive capitalization
 * Punctuation is less smart than knausj as well, especially if you do not use context sensitive dictation
 * The usage of vosk limits you to what vosk recognizes - adding words or commands in your talon configuration will not influence vosk itself in any way, so you must match all phrases that vosk might hear (so while you might have to command "springe", Vosk might just as well recognize "spring" or "sprenge" instead).
+
+## Todo:
 * Currently uses absolute paths for csvs
+* Remove custom *Clipscanner* clipboard implementation in favor of talon / knausj clipboard API
 
 ## Dependencies
 This is a plug-in for Talon Voice (https://talonvoice.com/).
