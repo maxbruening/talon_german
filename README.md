@@ -50,8 +50,11 @@ Currently, the commands use a simple hard-coded path, so you will have to change
 
 
 ### Context sensitive dictation
-Uses knausj peek functions, this keeps the behavior consistent and allows to make use of overloaded definitions for applications with special behavior.
+Uses the knausj peek function, this keeps the behavior consistent and allows to make use of overloaded definitions for applications with special behavior.
 Also introduced a setting `user.context_sensitive_dictation_german` that allows you to activate or deactivate this feature for german dictation (separately from english).
+
+### Eye tracker control
+You can control your eye tracker with the commands `Tracking (an | aus | Augen | Kopf | kalibrieren)`.
 
 ## Caveats:
 * Only primitive capitalization
