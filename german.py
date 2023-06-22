@@ -308,8 +308,7 @@ class Actions:
 
         text = ""
 
-        before = actions.user.dictation_peek_left()
-        after  = actions.user.dictation_peek_right()
+        before, after = actions.user.dictation_peek(left=True, right=True)
         # the following checks only use the first char
         before = before[-1] if len(before) > 0 else before
         after = after[0] if len(after) > 0 else after

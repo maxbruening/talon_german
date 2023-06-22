@@ -2,7 +2,7 @@ mode: user.german
 language: de_DE
 -
 settings():
-	context_sensitive_dictation_german = 1
+	user.context_sensitive_dictation_german = 1
     speech.timeout = 0.400
 
 # idea: allow to directly chain commands
