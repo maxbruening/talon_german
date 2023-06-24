@@ -68,9 +68,10 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 ## Dependencies
 This is a plug-in for Talon Voice (https://talonvoice.com/).
 Requires the [talon beta](https://www.patreon.com/lunixbochs) subscription for its support of additional speech engines.
+Assumes [knausj](https://github.com/knausj85/knausj_talon) to be present in the talon user directory (for context sensitive dictation and as shared location for the *words_to_replace_de* csv).
 
 ## Setup
-* download the newest German language model from [alphacephei][alphacephei] into `~/.talon/vosk/`:
+* download the newest German language model from [alphacephei][alphacephei] into `~/.talon/vosk/` or your preferred location:
   ```
   mkdir -p ~/.talon/vosk
   cd ~/.talon/vosk
@@ -79,9 +80,14 @@ Requires the [talon beta](https://www.patreon.com/lunixbochs) subscription for i
   mv vosk-model-de-* vosk-model-de
   ```
   Note that there are models in different sizes, you can experiment with that.
-* run `~/.talon/bin/pip install vosk` (on windows `scripts\pip install vosk`)
+* install vosk into the talon runtime by running `~/.talon/bin/pip install vosk` (on windows `scripts\pip install vosk`)
 * clone this repository into your talon user folder (`~/.talon/user`)
 
 It won't work on mac unless you sign the pip installed library file yourself, or unless aegis ships the vosk kaldi library with talon pre-signed.
+
+## Related
+Other related projects and repositories:
+* [hanueles german port of knausj] aims to offer a complete set of german commands mirroring knausj (not only limited to a dictation mode). Like this repo, requires knausj being present in the talon user directory. Seems to be less maintained though at the moment.
+
 
 [alphacephei]: https://alphacephei.com/vosk/models
