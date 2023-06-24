@@ -1,5 +1,5 @@
 # Talon German
-German Dictation Mode for Talon Voice
+German Dictation Mode for the beta version of Talon Voice.
 
 This is a fork of earlier setups, adding some improvements.
 
@@ -67,6 +67,7 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 
 ## Dependencies
 This is a plug-in for Talon Voice (https://talonvoice.com/).
+Requires the [talon beta](https://www.patreon.com/lunixbochs) subscription for its support of additional speech engines.
 
 ## Setup
 * download the newest German language model from [alphacephei][alphacephei] into `~/.talon/vosk/`:
