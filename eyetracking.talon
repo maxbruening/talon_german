@@ -12,3 +12,6 @@ language: de_DE
 
 (Tracking | Racing) kalibrieren:
     tracking.calibrate()
+
+(Tracking | Racing) Testmodus:
+    tracking.control_debug_toggle()
