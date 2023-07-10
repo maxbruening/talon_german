@@ -1,8 +1,11 @@
 mode: user.german
 language: de_DE
 -
-(Tracking | Racing) (aus | an):
-    tracking.control_toggle()
+(Tracking | Racing) an:
+    tracking.control_toggle(true)
+
+(Tracking | Racing) aus:
+    tracking.control_toggle(false)
 
 (Tracking | Racing) Augen:
     tracking.control_gaze_toggle()
