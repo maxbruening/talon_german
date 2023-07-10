@@ -124,10 +124,12 @@ ctx.lists["user.punctuation"] = {
     "plenk": "␣",
     "planck": "␣",
     "beistrich": ",",  # komma is often confused with komme
-    "bei strich": ",",  # komma is often confused with komme
-    "beiß dich": ",",  # komma is often confused with komme
-    "beißt nicht": ",",  # komma is often confused with komme
-    "beistriche": ",",  # komma is often confused with komme
+    "bei strich": ",",
+    "bei stich": ",",
+    "bei scheck": ",",
+    "beiß dich": ",",
+    "beißt nicht": ",",
+    "beistriche": ",",
     "punkt": ".",
     "ellipse": "...",
     "semikolon": ";",

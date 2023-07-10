@@ -102,24 +102,24 @@ stelle wieder her: edit.redo()
     repeat(number_small - 1)
 
 # large movements
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|springer|springt|springen) links:
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|springer|springt|springen) links:
     edit.word_left()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|springer|springt|springen) links <user.number_small>:
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|springer|springt|springen) links <user.number_small>:
     edit.word_left()
     repeat(number_small - 1)
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|springer|springt|springen) rechts:
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|springer|springt|springen) rechts:
     edit.word_right()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|springer|springt|springen) rechts <user.number_small>:
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|springer|springt|springen) rechts <user.number_small>:
     edit.word_right()
     repeat(number_small - 1)
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen) zeilen anfang: edit.line_start()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen) ganz links: edit.line_start()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen) heimat: edit.line_start()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen) (band|Ben): edit.line_start()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen) zeilenende: edit.line_end()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen) push: edit.line_end()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen) ganz rechts: edit.line_end()
-(spring|spreng|sprang|springe|sprüche|spenge|spring die|sprenger|springer|springt|springen|sprengel) (land|event|blend|rent|nennt|lent|lähmt|lernt|lend): edit.line_end()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen) zeilen anfang: edit.line_start()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen) ganz links: edit.line_start()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen) heimat: edit.line_start()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen) (band|Ben): edit.line_start()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen) zeilenende: edit.line_end()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen) push: edit.line_end()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen) ganz rechts: edit.line_end()
+(spring|spreng|sprang|springe|sprünge|sprüche|spenge|spring die|sprenger|springer|springt|springen|sprengel) (land|event|blend|rent|nennt|lent|lähmt|lernt|lend): edit.line_end()
 
 #######################################################################
 ## Selecting Text
@@ -177,11 +177,11 @@ löschtaste: key("backspace")
 # parameter for the working directory the editor should open in.
 # If you do not need it, you can just get rid of the second parameter to get
 # back knausj edit_text_file()
-(bearbeite|wer arbeitet|bearbeitet|bearbeitete|bearbeiter|gearbeitet|modifiziere|modifiziert) (deutsche|deutscher|solche) (wörter|wetter|blätter|better|pater|vetter):
+(bearbeite|wer arbeitet|bearbeitet|bearbeitete|bearbeiter|gearbeitet|modifiziere|modifiziert) (deutsche|deutsch|deutscher|solche) (wörter|wetter|blätter|better|pater|vetter):
     user.edit_text_file("/home/markus/.talon/user/knausj_talon/settings/additional_words_de.csv", "/home/markus/.talon/user/talon_german")
     sleep(500ms)
     edit.file_end()
-(bearbeite|wer arbeitet|bearbeitet|bearbeitete|bearbeiter|gearbeitet|modifiziere|modifiziert) (deutsche|deutscher|solche) befehle:
+(bearbeite|wer arbeitet|bearbeitet|bearbeitete|bearbeiter|gearbeitet|modifiziere|modifiziert) (deutsche|deutsch|deutscher|solche) befehle:
     user.edit_text_file("/home/markus/.talon/user/talon_german/german.talon", "/home/markus/.talon/user/talon_german")
     sleep(500ms)
     edit.file_end()
