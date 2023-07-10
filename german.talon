@@ -51,9 +51,15 @@ leerzeichen: " "
 
 (Spiegelstrich | spiegel strich): " - "
 
+# use knausj insert_between() instead?
 (in | end | eins | fans | tanz | dein | ein) klammern:
     " ()"
     edit.left()
+
+(in | end | eins | fans | tanz | dein | ein) Anführungszeichen:
+    ' ""'
+    edit.left()
+
 großgeschrieben | groß geschrieben | grossgeschrieben | mach groß | ausgeschrieben:
     edit.select_word()
     user.formatters_reformat_selection("title")
