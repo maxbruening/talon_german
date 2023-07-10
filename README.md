@@ -62,8 +62,9 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 * The usage of vosk limits you to what vosk recognizes - adding words or commands in your talon configuration will not influence vosk itself in any way, so you must match all phrases that vosk might hear (so while you might have to command "springe", Vosk might just as well recognize "spring" or "sprenge" instead).
 
 ## Todo:
-* Currently uses absolute paths for csvs
+* Currently uses absolute paths for csvs, use relative paths (perhaps switch to .talon-list)
 * Remove custom *Clipscanner* clipboard implementation in favor of talon / knausj clipboard API
+* better structure of commands, split into seperate files
 
 ## Dependencies
 This is a plug-in for Talon Voice (https://talonvoice.com/).
@@ -87,7 +88,9 @@ It won't work on mac unless you sign the pip installed library file yourself, or
 
 ## Related
 Other related projects and repositories:
-* [hanueles german port of knausj] aims to offer a complete set of german commands mirroring knausj (not only limited to a dictation mode). Like this repo, requires knausj being present in the talon user directory. Seems to be less maintained though at the moment.
+* [hanueles german port of knausj](https://github.com/hanuele/knausj_german) aims to offer a complete set of german commands mirroring knausj (not only limited to a dictation mode). Like this repo, requires knausj being present in the talon user directory. Seems to be less maintained though at the moment.
+
+Also visit the [#language-deutsch](https://talonvoice.slack.com/archives/CURG8FXAQ) channel in the talon slack in case you have any questions or problems.
 
 
 [alphacephei]: https://alphacephei.com/vosk/models
