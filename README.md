@@ -62,9 +62,12 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 * The usage of vosk limits you to what vosk recognizes - adding words or commands in your talon configuration will not influence vosk itself in any way, so you must match all phrases that vosk might hear (so while you might have to command "springe", Vosk might just as well recognize "spring" or "sprenge" instead).
 
 ## Todo:
-* Currently uses absolute paths for csvs, use relative paths (perhaps switch to .talon-list)
-* Remove custom *Clipscanner* clipboard implementation in favor of talon / knausj clipboard API
-* better structure of commands, split into seperate files
+* [ ] Rename additional_words_de.csv to words_to_replace_de.csv since that is what the file actually does
+* [ ] Currently uses absolute paths for csvs, use relative paths (perhaps switch to .talon-list)
+* [ ] Extract commonly used command prefixes like `springe`, `bearbeite deutsche`, `lösche`, `entferne` into something like a variable to make addition of alternate variations simpler and improve readability
+* [ ] Better structure of commands, split into seperate files
+* [ ] Add version of the `großgeschrieben` command that will permanently add the capitalized word to the csv
+* [ ] Remove custom *Clipscanner* clipboard implementation in favor of talon / knausj clipboard API
 
 ## Dependencies
 This is a plug-in for Talon Voice (https://talonvoice.com/).
