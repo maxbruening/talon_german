@@ -392,15 +392,17 @@ class Actions:
                         actions.edit.extend_right()
 
     def vosk_recognize_german(phrase: Phrase):
-        """Replay speech into vosk"""
+        """Replay speech from last phrase into vosk"""
         # NOTE: this is pretty much all considered an experimental API
         # and this script is just for demo purposes, for the beta only
         current_phrase = phrase_stack[-1]
         ts = current_phrase['_ts']
         start = phrase.words[0].start - ts
         # NOTE: might have to tweak this depending on engine / model if words
-        # get lost or parts of "german" appear (as in "an")
-        start = max(0, start - 0.2)
+        # get lost or parts of your prefix appear as word (for example getting
+        # "an ..." when saying "german ..." given prefix "german")
+        tweak_offset = -0.1
+        start = max(0, start + tweak_offset)
         end = phrase.words[-1].end - ts
         samples = current_phrase['samples']
         pstart = int(start * 16_000)
