@@ -1,11 +1,11 @@
 # Talon German
-German Dictation Mode for the beta version of Talon Voice.
+German Dictation Mode for the beta version subscription of Talon Voice.
 
 This is a fork of earlier setups, adding some improvements.
 
 ## Usage
 Say `german` to switch from command mode to German dictation mode and `english` / `ego` to switch back.
-Insert a quick german phrase with `nimitz <german text>` (from russian "nemetz" for "german").
+Use `nimitz <german phrase>` for single german phrases like you would use `say <english phrase>` (from russian "nemetz" for "german").
 Check out the _german.talon_ (and _german.py_) files for German commands.
 
 ## Improvements:
@@ -32,12 +32,12 @@ I improved robustness of many of the commands by adding many of the common misre
 Unfortunately, this makes my talon file a bit uglier to read, since something like "springe rechts" now turns into "(springe | sprenge | spring | sprang | ... ) rechts"
 
 ### German mode / quick german phrases
-The previous setup allows you to dictate a quick german phrase from english mode without necessitating switching to german mode and back by appending your phrase to the `german` you produce to change modes (for example `german Hallo Welt`).
+The original setup allowed to dictate a quick german phrase from english mode without necessitating switching to german mode and back by appending your phrase to the `german` you produce to change modes (for example `german Hallo Welt`).
 Note that the implementation for this is somewhat of hack and behavior might change with updates in talon or the english speech model.
 
-Since I would sometimes switch into german mode when I did not want to or fail to remain in german mode (resulting in my german text getting interpreted as a bunch of english commands), I set up the quick german phrase and the german mode change to use different commands (there is also the fact that my german accent made the 'r' in 'german' a bit harder to recognize when quickly chaining):
+Since I would sometimes switch into german mode when I did not want to or fail to remain in german mode (resulting in my german text getting interpreted as a bunch of english commands), I set up the quick german phrase and the german mode change to use separate commands (there is also the fact that my german accent made the 'r' in 'german' a bit harder to recognize when quickly chaining):
 * `german` switches to german mode and stays there.
-* `nimitz` (from russian "nemetz" for german) will interpret the following phrase as german and allow you to continue in english as before.
+* `nimitz` (from russian "nemetz" for german) will interpret the following phrase as german and allow you to continue in english as before. This is the german equivalent of `say <english phrase>`.
 
 Use `english`, or short `ego` (japanese "eigo" for english) to switch back.
 
