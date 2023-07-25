@@ -4,7 +4,7 @@ German Dictation Mode for the beta version subscription of Talon Voice.
 This is a fork of earlier setups, adding some improvements.
 
 ## Usage
-Say `german` to switch from command mode to German dictation mode and `english` / `ego` to switch back.
+Say `german [mode]` to switch from command mode to German dictation mode and `english` / `ego` to switch back.
 Use `nimitz <german phrase>` for single german phrases like you would use `say <english phrase>` (from russian "nemetz" for "german").
 Check out the _german.talon_ (and _german.py_) files for German commands.
 
@@ -32,7 +32,8 @@ I improved robustness of many of the commands by adding many of the common misre
 Unfortunately, this makes my talon file a bit uglier to read, since something like "springe rechts" now turns into "(springe | sprenge | spring | sprang | ... ) rechts"
 
 ### German mode / quick german phrases
-The original setup allowed to dictate a quick german phrase from english mode without necessitating switching to german mode and back by appending your phrase to the `german` you produce to change modes (for example `german Hallo Welt`).
+The original setup introduced a way to dictate a quick german phrase while in english mode without having to switch to german mode and back (like a german `say` command).
+This was originally just an improved version of the `german [mode]` command used to change modes (for example `german Hallo Welt` instead of `german <pause> Hallo Welt english <pause>`).
 Note that the implementation for this is somewhat of hack and behavior might change with updates in talon or the english speech model.
 
 Since I would sometimes switch into german mode when I did not want to or fail to remain in german mode (resulting in my german text getting interpreted as a bunch of english commands), I set up the quick german phrase and the german mode change to use separate commands (there is also the fact that my german accent made the 'r' in 'german' a bit harder to recognize when quickly chaining):
@@ -50,8 +51,10 @@ Currently, the commands use a simple hard-coded path, so you will have to change
 
 
 ### Context sensitive dictation
+Can be activated for german dictation with the setting `user.context_sensitive_dictation_german` (this is separate from the english setting).
 Uses the knausj peek function, this keeps the behavior consistent and allows to make use of overloaded definitions for applications with special behavior.
-Also introduced a setting `user.context_sensitive_dictation_german` that allows you to activate or deactivate this feature for german dictation (separately from english).
+
+Context sensitive dictation also applies to `nimitz <phrase>`, which means it is not necessary to add or remove spaces before inserting a german phrase (I find this to be very convenient).
 
 ### Eye tracker control
 You can control your eye tracker with the commands `Tracking (an | aus | Augen | Kopf | kalibrieren)`.
@@ -60,6 +63,7 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 * Only primitive capitalization
 * Punctuation is less smart than knausj as well, especially if you do not use context sensitive dictation
 * The usage of vosk limits you to what vosk recognizes - adding words or commands in your talon configuration will not influence vosk itself in any way, so you must match all phrases that vosk might hear (so while you might have to command "springe", Vosk might just as well recognize "spring" or "sprenge" instead).
+* Trying to do `go to sleep` / `talon sleep` while in german mode will have no effect currently. You will have to cycle through sleep / wake however when switching back to english afterwards. Therefore, for sleep you have to switch back to an english mode beforehand, or mute the microphone.
 
 ## Todo:
 * [ ] Rename additional_words_de.csv to words_to_replace_de.csv since that is what the file actually does
@@ -67,6 +71,7 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 * [ ] Extract commonly used command prefixes like `springe`, `bearbeite deutsche`, `lösche`, `entferne` into something like a variable to make addition of alternate variations simpler and improve readability
 * [ ] Better structure of commands, split into seperate files
 * [ ] Add version of the `großgeschrieben` command that will permanently add the capitalized word to the csv
+* [ ] Support for sleeping / waking while in german mode
 * [ ] Remove custom *Clipscanner* clipboard implementation in favor of talon / knausj clipboard API
 
 ## Dependencies
