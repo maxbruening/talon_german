@@ -12,8 +12,8 @@ language: de_DE
 mod = Module()
 
 # NOTE: This method requires this module to be one folder below the top-level
-#   knausj folder.
-SETTINGS_DIR: Path = Path(__file__).parents[1] / "knausj_talon" / "settings"
+#   community folder.
+SETTINGS_DIR: Path = Path(__file__).parents[1] / "community" / "settings"
 
 if not SETTINGS_DIR.is_dir():
     os.mkdir(SETTINGS_DIR)
@@ -97,4 +97,3 @@ always_capitalized_words = get_list_from_csv(
     default={},
 )
 ctx.lists["user.always_capitalized_words_german"] = always_capitalized_words
-
