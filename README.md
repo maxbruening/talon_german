@@ -43,8 +43,8 @@ Since I would sometimes switch into german mode when I did not want to or fail t
 Use `english`, or short `ego` (japanese "eigo" for english) to switch back.
 
 ### Quick access to configuration
-Similar to knausj `customize ...`, following commands allow quick access to important configuration files:
-* `[modifiziere | bearbeite] deutsche Wörter` opens a *additional_words_de.csv* file placed next to knausj *additional_words.csv*. Use this to add new words or fix misrecognitions as well as capitalisation mistakes coming from vosk. Note: actually, it works more like words_to_replace.csv, since it only replaces things that vosk recognized but cannot get it to recognize new stuff - I should rename that.
+Similar to `customize ...` in the community command set, following commands allow quick access to important configuration files:
+* `[modifiziere | bearbeite] deutsche Wörter` opens a *additional_words_de.csv* file placed next to community *additional_words.csv*. Use this to add new words or fix misrecognitions as well as capitalisation mistakes coming from vosk. Note: actually, it works more like words_to_replace.csv, since it only replaces things that vosk recognized but cannot get it to recognize new stuff - I should rename that.
 * `[modifiziere | bearbeite] deutsche Befehle` opens *german.talon*
 The commands open a gvim instance.
 Currently, the commands use a simple hard-coded path, so you will have to change that.
@@ -52,7 +52,7 @@ Currently, the commands use a simple hard-coded path, so you will have to change
 
 ### Context sensitive dictation
 Can be activated for german dictation with the setting `user.context_sensitive_dictation_german` (this is separate from the english setting).
-Uses the knausj peek function, this keeps the behavior consistent and allows to make use of overloaded definitions for applications with special behavior.
+Uses the community peek function, this keeps the behavior consistent and allows to make use of overloaded definitions for applications with special behavior.
 
 Context sensitive dictation also applies to `nimitz <phrase>`, which means it is not necessary to add or remove spaces before inserting a german phrase (I find this to be very convenient).
 
@@ -61,7 +61,7 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 
 ## Caveats:
 * Only primitive capitalization
-* Punctuation is less smart than knausj as well, especially if you do not use context sensitive dictation
+* Punctuation is less smart than in community as well, especially if you do not use context sensitive dictation
 * The usage of vosk limits you to what vosk recognizes - adding words or commands in your talon configuration will not influence vosk itself in any way, so you must match all phrases that vosk might hear (so while you might have to command "springe", Vosk might just as well recognize "spring" or "sprenge" instead).
 * Trying to do `go to sleep` / `talon sleep` while in german mode will have no effect currently. You will have to cycle through sleep / wake however when switching back to english afterwards. Therefore, for sleep you have to switch back to an english mode beforehand, or mute the microphone.
 
@@ -72,12 +72,12 @@ You can control your eye tracker with the commands `Tracking (an | aus | Augen |
 * [ ] Better structure of commands, split into seperate files
 * [ ] Add version of the `großgeschrieben` command that will permanently add the capitalized word to the csv
 * [ ] Support for sleeping / waking while in german mode
-* [ ] Remove custom *Clipscanner* clipboard implementation in favor of talon / knausj clipboard API
+* [ ] Remove custom *Clipscanner* clipboard implementation in favor of talon / community clipboard API
 
 ## Dependencies
 This is a plug-in for Talon Voice (https://talonvoice.com/).
 Requires the [talon beta](https://www.patreon.com/lunixbochs) subscription for its support of additional speech engines.
-Assumes [knausj](https://github.com/knausj85/knausj_talon) to be present in the talon user directory (for context sensitive dictation and as shared location for the *words_to_replace_de* csv).
+Assumes the [community command set](https://github.com/talonhub/community) to be present in the talon user directory (for providing the `peek` function for context sensitive dictation and as shared location for the *words_to_replace_de* csv).
 
 ## Setup
 * download the newest German language model from [alphacephei][alphacephei] into `~/.talon/vosk/` or your preferred location:
@@ -96,7 +96,7 @@ It won't work on mac unless you sign the pip installed library file yourself, or
 
 ## Related
 Other related projects and repositories:
-* [hanueles german port of knausj](https://github.com/hanuele/knausj_german) aims to offer a complete set of german commands mirroring knausj (not only limited to a dictation mode). Like this repo, requires knausj being present in the talon user directory. Seems to be less maintained though at the moment.
+* [hanueles german port of knausj (the community command set)](https://github.com/hanuele/knausj_german) aims to offer a complete set of german commands mirroring knausj (not only limited to a dictation mode). Like this repo, requires knausj (community) being present in the talon user directory. Seems to be less maintained though at the moment.
 
 Also visit the [#language-deutsch](https://talonvoice.slack.com/archives/CURG8FXAQ) channel in the talon slack in case you have any questions or problems.
 
